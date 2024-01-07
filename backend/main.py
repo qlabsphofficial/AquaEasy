@@ -41,6 +41,10 @@ class RegisterModel(BaseModel):
     username: str
     password: str
     confirm: str
+    first_name: str
+    last_name: str
+    contact: str
+    email: str
 
 
 class LogModel(BaseModel):
@@ -76,6 +80,10 @@ async def register(user: RegisterModel, db: Session = Depends(get_database)):
                 new_user = User()
                 new_user.username = user.username
                 new_user.password = user.password
+                new_user.first_name = user.first_name
+                new_user.last_name = user.last_name
+                new_user.contact = user.contact
+                new_user.email = user.email
 
                 db.add(new_user)
                 db.commit()
