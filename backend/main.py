@@ -55,6 +55,14 @@ class LogModel(BaseModel):
     user_id: int
 
 
+@app.get('/show_users')
+async def show_users(db: Session = Depends(get_database)):
+    try:
+        all_users = db.query(User).all()
+        return { 'response': 'User Retrieval Success', 'users': all_users, 'status_code': 200 }
+    except:
+        return { 'response': 'User Retrieval Failed', 'status_code': 200 }
+    
 
 @app.post('/login')
 async def login(username: str, password: str, db: Session = Depends(get_database)):
