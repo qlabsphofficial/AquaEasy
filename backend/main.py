@@ -153,7 +153,7 @@ async def retrieve_entries(user_id: int, db: Session = Depends(get_database)):
     
 
 @app.get('/generate_dummy')
-async def generate_dummy(db: Session = Depends(get_database)):
+async def generate_dummy(record_owner: int, db: Session = Depends(get_database)):
     try:
         for x in range(20):
             new_entry = Log()
@@ -162,7 +162,7 @@ async def generate_dummy(db: Session = Depends(get_database)):
             new_entry.turbidity = rd.randint(10, 20)
             new_entry.tds = rd.randint(10, 20)
             new_entry.ec = rd.randint(10, 20)
-            new_entry.record_owner = 1
+            new_entry.record_owner = record_owner
 
             db.add(new_entry)
             db.commit()
