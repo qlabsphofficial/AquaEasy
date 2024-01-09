@@ -110,6 +110,7 @@ async def insert_log(log: LogModel, db: Session = Depends(get_database)):
         new_entry.turbidity = log.turbidity
         new_entry.ph = log.humidity 
         new_entry.tds = log.tds
+        new_entry.ec = log.ec
         new_entry.date_created = dt.datetime.now()
         new_entry.record_owner = log.user_id
 
