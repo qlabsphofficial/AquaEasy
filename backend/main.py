@@ -48,10 +48,10 @@ class RegisterModel(BaseModel):
 
 
 class LogModel(BaseModel):
-    turbidity: int
-    humidity: int
-    tds: int
-    ec: int
+    turbidity: float
+    humidity: float
+    tds: float
+    ec: float
     user_id: int
 
 
@@ -63,6 +63,15 @@ async def show_users(db: Session = Depends(get_database)):
     except:
         return { 'response': 'User Retrieval Failed', 'status_code': 200 }
     
+
+@app.get('/retrieve_user_data')
+async def retrieve_user_data(user_id: int, db: Session = Depends(get_database)):
+    try:
+        user = db.query(User).filter(User.id == user_id).first()
+        return { 'response': 'User Retrieval Success', 'user': user, 'status_code': 200 }
+    except:
+        return { 'response': 'User Retrieval Failed', 'status_code': 200 }
+
 
 @app.post('/login')
 async def login(username: str, password: str, db: Session = Depends(get_database)):
