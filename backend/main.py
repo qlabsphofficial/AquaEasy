@@ -52,6 +52,7 @@ class LogModel(BaseModel):
     humidity: float
     tds: float
     ec: float
+    battery: float
     user_id: int
 
 
@@ -105,7 +106,7 @@ async def register(user: RegisterModel, db: Session = Depends(get_database)):
                 db.add(new_user)
                 db.commit()
 
-                return { 'response': 'Registration successful.', 'status_code': 200 }
+                return { 'response': 'Registration successful.', 'status_code': 200, 'new_user_id': new_user.id }
         else:
             return { 'response': 'User already exists.', 'status_code': 403 }
     except:
@@ -120,6 +121,7 @@ async def insert_log(log: LogModel, db: Session = Depends(get_database)):
         new_entry.ph = log.humidity 
         new_entry.tds = log.tds
         new_entry.ec = log.ec
+        new_entry.battery = log.battery
         new_entry.date_created = dt.datetime.now()
         new_entry.record_owner = log.user_id
 
@@ -161,22 +163,3 @@ async def retrieve_entries(user_id: int, db: Session = Depends(get_database)):
     except:
         return { 'response': 'Error retrieving data.', 'status_code': 400 }
     
-
-@app.get('/generate_dummy')
-async def generate_dummy(record_owner: int, db: Session = Depends(get_database)):
-    try:
-        for x in range(20):
-            new_entry = Log()
-
-            new_entry.ph = rd.randint(10, 20)
-            new_entry.turbidity = rd.randint(10, 20)
-            new_entry.tds = rd.randint(10, 20)
-            new_entry.ec = rd.randint(10, 20)
-            new_entry.record_owner = record_owner
-
-            db.add(new_entry)
-            db.commit()
-
-        return { 'response': 'Generation completed.', 'status_code': 200 }
-    except:
-        return { 'response': 'Generation Failed.', 'status_code': 400 }

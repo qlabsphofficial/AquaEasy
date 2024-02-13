@@ -24,6 +24,7 @@ class Log(Base):
     ph = Column(Float)
     tds = Column(Float)
     ec = Column(Float)
+    battery = Column(Float)
     date_created = Column(DateTime, server_default=func.now())
     record_owner = Column(Integer, ForeignKey('users.id'))
 
