@@ -168,10 +168,14 @@ async def retrieve_entries(user_id: int, db: Session = Depends(get_database)):
 async def delete_entries(db: Session = Depends(get_database)):
     try:
         entries = db.query(Log).all()
-        entries.delete()
+        print(entries)
+
+        for entry in entries:
+            db.delete(entry)
+
         db.commit()
 
         return { 'response': 'Data Deleted', 'status_code': 200 }
     except:
-        return { 'response': 'Error retrieving data.', 'status_code': 400 }
+        return { 'response': 'Error deleting data.', 'status_code': 400 }
     
