@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from database import SessionLocal, engine, Base
 from pydantic import BaseModel
-from models import User, Log
+from models import User, Log, DeletedLog
 import datetime as dt
 import random as rd
 
@@ -162,6 +162,32 @@ async def retrieve_entries(user_id: int, db: Session = Depends(get_database)):
         return { 'payload': entries, 'status_code': 200 }
     except:
         return { 'response': 'Error retrieving data.', 'status_code': 400 }
+
+
+
+@app.get('/delete_entry')
+async def delete_entry(entry_id, db: Session = Depends(get_database)):
+    try:
+        entry = db.query(Log).filter(Log.id == entry_id)
+        print(entry)
+
+        deleted_entry = DeletedLog()
+        deleted_entry.turbidity = entry.turbidity
+        deleted_entry.ph = entry.ph
+        deleted_entry.tds = entry.tds
+        deleted_entry.ec = entry.ec
+        deleted_entry.battery = entry.battery
+        deleted_entry.date_created = entry.date_created
+        deleted_entry.record_owner = entry.record_owner
+
+        db.add(deleted_entry)
+        db.delete(entry)
+        db.commit()
+
+        return { 'response': 'Data Deleted', 'status_code': 200 }
+    except:
+        return { 'response': 'Error deleting data.', 'status_code': 400 }
+    
 
 
 @app.get('/delete_entries')

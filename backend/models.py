@@ -15,6 +15,7 @@ class User(Base):
     email = Column(String)
 
     log_records = relationship('Log', back_populates='owner')
+    deleted_log_records = relationship('DeletedLog', back_populates='deleted_record_owner')
 
 class Log(Base):
     __tablename__ = 'logs'
@@ -29,3 +30,18 @@ class Log(Base):
     record_owner = Column(Integer, ForeignKey('users.id'))
 
     owner = relationship('User', back_populates='log_records')
+
+
+class DeletedLog(Base):
+    __tablename__ = 'logs'
+
+    id = Column(Integer, autoincrement=True, primary_key=True)
+    turbidity = Column(Float)
+    ph = Column(Float)
+    tds = Column(Float)
+    ec = Column(Float)
+    battery = Column(Float)
+    date_created = Column(DateTime, server_default=func.now())
+    record_owner = Column(Integer, ForeignKey('users.id'))
+
+    deleted_record_owner = relationship('User', back_populates='deleted_log_records')
