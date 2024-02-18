@@ -33,7 +33,7 @@ class Log(Base):
 
 
 class DeletedLog(Base):
-    __tablename__ = 'logs'
+    __tablename__ = 'deleted_logs'
 
     id = Column(Integer, autoincrement=True, primary_key=True)
     turbidity = Column(Float)
