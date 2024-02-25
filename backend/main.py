@@ -187,6 +187,7 @@ async def delete_entry(entry_id: int, db: Session = Depends(get_database)):
             deleted_entry.ec = entry.ec
             deleted_entry.battery = entry.battery
             deleted_entry.date_created = entry.date_created
+            deleted_entry.date_deleted = dt.datetime.now()
             deleted_entry.record_owner = entry.record_owner
 
             db.add(deleted_entry)
