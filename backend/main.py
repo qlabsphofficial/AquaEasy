@@ -164,6 +164,15 @@ async def retrieve_entries(user_id: int, db: Session = Depends(get_database)):
         return { 'response': 'Error retrieving data.', 'status_code': 400 }
 
 
+@app.get('/all_deleted_entries')
+async def retrieve_deleted_entries(user_id: int, db: Session = Depends(get_database)):
+    try:
+        entries = db.query(DeletedLog).filter(DeletedLog.record_owner == user_id).all()
+
+        return { 'payload': entries, 'status_code': 200 }
+    except:
+        return { 'response': 'Error retrieving data.', 'status_code': 400 }
+
 
 @app.post('/delete_entry')
 async def delete_entry(entry_id: int, db: Session = Depends(get_database)):
