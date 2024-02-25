@@ -174,7 +174,7 @@ async def retrieve_deleted_entries(user_id: int, db: Session = Depends(get_datab
         return { 'response': 'Error retrieving data.', 'status_code': 400 }
 
 
-@app.post('/delete_entry')
+@app.get('/delete_entry')
 async def delete_entry(entry_id: int, db: Session = Depends(get_database)):
     try:
         entry = db.query(Log).filter(Log.id == entry_id).first()
