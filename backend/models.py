@@ -17,6 +17,7 @@ class User(Base):
     log_records = relationship('Log', back_populates='owner')
     deleted_log_records = relationship('DeletedLog', back_populates='deleted_record_owner')
 
+
 class Log(Base):
     __tablename__ = 'logs'
 
@@ -42,7 +43,6 @@ class DeletedLog(Base):
     ec = Column(Float)
     battery = Column(Float)
     date_created = Column(DateTime, server_default=func.now())
-    date_deleted = Column(DateTime, server_default=func.now())
     record_owner = Column(Integer, ForeignKey('users.id'))
 
     deleted_record_owner = relationship('User', back_populates='deleted_log_records')
