@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "chart.js": "^4.4.3",
     "core-js": "^3.8.3",
     "sass": "^1.69.6",
     "sass-loader": "^13.3.3",
