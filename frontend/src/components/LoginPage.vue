@@ -1,7 +1,7 @@
 <template>
     <div id="container">
         <div id="login-panel">
-            <h1>LOGIN</h1>
+            <h1>{{ message }}</h1>
             <h4>Water Quality Monitoring</h4>
 
             <div id="login-form">
@@ -18,7 +18,8 @@
 
             <div id="interactivity-section">
                 <button @click="login()">Login</button>
-                <h5 id="sign-up" @click="() => { this.$router.push('/register') }">Don't have an account? Sign up.</h5>
+                <br><br>
+                <a id="sign-up" @click="() => { this.$router.push('/register') }">Don't have an account? Sign up.</a>
             </div>
         </div>
     </div>
@@ -28,15 +29,35 @@
 export default {
     name: 'LoginPage',
     methods: {
-        login(){
-            console.log(this.username);
-            console.log(this.password);
+        async login() {
+            try {
+                const response = await fetch(`https://aquaeasy.onrender.com/login?username=${this.username}&password=${this.password}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+                });
 
-            this.$router.push('Dashboard');
+                if (response.ok) {
+                    const responseData = await response.json();
+
+                    if (responseData && responseData.response === 'Login successful.') {
+                        this.$router.push({ name: 'dashboard', params: { user_id: responseData.user_data.id } });
+                    } else {
+                        this.message = 'LOGIN FAILED.';
+                        setTimeout(() => { this.message = 'LOGIN'}, 2000);
+                    }
+                } else {
+                    console.log('Login Failed. Status:', response.status);
+                }
+            } catch (error) {
+                console.error('An error occurred during login:', error.message);
+            }
         }
     },
     data(){
         return {
+            message: 'LOGIN',
             username: '',
             password: ''
         }
