@@ -32,7 +32,7 @@
 
             <div class="nav-link">
                 <img src="" alt="" class="nav-link-icon">
-                <h4 @click="this.$router.push('/login')">Log Out</h4>
+                <h4 @click="this.$router.push('/')">Log Out</h4>
             </div>
         </div>
 
