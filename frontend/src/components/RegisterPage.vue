@@ -61,7 +61,7 @@ export default {
                 console.log(responseData.response);
 
                 if (responseData.response == 'Registration successful.'){
-                    this.$router.push('Login');
+                    this.$router.push('/');
                 }
                 else {
                     console.log('Failed');
