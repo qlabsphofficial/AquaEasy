@@ -49,6 +49,7 @@ import FaqPage from './FaqPage.vue';
 import ProfilePage from './ProfilePage.vue';
 import LoginPage from './LoginPage.vue';
 import ChangeLogs from './ChangeLogs.vue';
+import current_address from '@/address';
 
 export default {
     name: 'DashboardPage',
@@ -64,12 +65,13 @@ export default {
         changeComponent(componentName){
             this.currentComponent = componentName;
         },
+
         accessProfile(){
             this.currentComponent = 'ProfilePage';
         },
+
         async retrieve_dashboard_data(){
-            // const response = await fetch(`http://127.0.0.1:8000/retrieve_dashboard_data?user_id=${this.user_id}`);
-            const response = await fetch(`https://aquaeasy.onrender.com/retrieve_dashboard_data?user_id=${this.user_id}`);
+            const response = await fetch(`${current_address}/retrieve_dashboard_data?user_id=${this.user_id}`);
             const data = await response.json();
 
             if (!response.ok){
@@ -84,8 +86,8 @@ export default {
     props: ['user_id'],
     data(){
         return {
-            user_data: [],
             currentComponent: 'AnalysisComponent',
+            user_data: [],
             turbidity_data: [],
             humidity_data: [],
             tds_data: [],
@@ -110,6 +112,7 @@ export default {
     }
 
     #navbar {
+        height: 100vh;
         width: 220px;
         min-width: 220px;
         background-color: #1497DD;
@@ -119,6 +122,10 @@ export default {
     }
 
     .nav-link {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         margin-bottom: 15px;
         cursor: pointer;
     }

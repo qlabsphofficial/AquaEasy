@@ -27,29 +27,32 @@
 </template>
 
 <script>
+import current_address from '@/address';
+
 export default {
     name: 'HistoricalData',
     methods: {
         async retrieve_data(){
-            const response = await fetch(`https://aquaeasy.onrender.com/all_entries?user_id=${this.user_data.id}`);
-            // const response = await fetch(`http://127.0.0.1:8000/all_entries?user_id=${this.user_data.id}`);
+            const response = await fetch(`${current_address}/all_entries?user_id=${this.user_data.id}`);
             const data = await response.json();
-
-            if (!response.ok){
-                console.log('Failed.');
-            }
-            else{
+            
+            if (response.ok){
                 this.logs = data.payload;
-            }            
+            }
+            else {
+                console.log('Request failed.');
+            }
         },
 
         async delete_data(entry_id){
-            const response = await fetch(`https://aquaeasy.onrender.com/delete_entry?entry_id=${entry_id}`);
+            const response = await fetch(`${current_address}/delete_entry?entry_id=${entry_id}`);
+            const data = response.json();
 
             if (!response.ok){
                 console.log('Failed.');
             }
-            else{
+            else {
+                console.log(data.response);
                 this.retrieve_data();
             }
         }
@@ -57,17 +60,19 @@ export default {
     props: {
         user_data: {}
     },  
+
     data() {
         return {
             logs: []
         }
     },
+
     mounted(){
         this.retrieve_data();
         
         setInterval(() => {
             this.retrieve_data();
-        }, 70000)
+        }, 60000)
     }
 }
 </script>

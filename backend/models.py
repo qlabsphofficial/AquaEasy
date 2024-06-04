@@ -42,7 +42,8 @@ class DeletedLog(Base):
     tds = Column(Float)
     ec = Column(Float)
     battery = Column(Float)
-    date_created = Column(DateTime, server_default=func.now())
+    date_created_log = Column(DateTime)
+    date_deleted = Column(DateTime, server_default=func.now())
     record_owner = Column(Integer, ForeignKey('users.id'))
 
     deleted_record_owner = relationship('User', back_populates='deleted_log_records')

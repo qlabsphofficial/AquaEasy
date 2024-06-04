@@ -11,6 +11,8 @@
 </template>
 
 <script>
+// import current_address from '@/address';
+
 export default {
     name: 'ProfilePage',
     props: {

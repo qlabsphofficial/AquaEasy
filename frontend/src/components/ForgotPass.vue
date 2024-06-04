@@ -8,32 +8,29 @@
                 <h4>Username</h4>
                 <input type="text" placeholder="Enter your username..." v-model="username">
 
-                <h4>Password</h4>
-                <input type="password" placeholder="Enter your password..." v-model="password">
-            </div>
-
-            <div id="forgot-section">
-                <h5 id="forgot-pass" @click="() => { this.$router.push('/forgot_pass') }">Forgot Password?</h5>
+                <h4>Email</h4>
+                <input type="email" placeholder="Enter your email..." v-model="email">
             </div>
 
             <div id="interactivity-section">
-                <button @click="login()">Login</button>
-                <br><br>
-                <a id="sign-up" @click="() => { this.$router.push('/register') }">Don't have an account? Sign up.</a>
+                <button @click="requestPassReset()">Request Password Change</button>
+                <br>
+                <br>
+                <h5 @click="() => { this.$router.push('/') } ">Return to Previous Page</h5>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import current_address from '@/address';
+import current_address from '@/address.js';
 
 export default {
-    name: 'LoginPage',
+    name: 'ForgotPass',
     methods: {
-        async login() {
+        async requestPassReset() {
             try {
-                const response = await fetch(`${current_address}/login?username=${this.username}&password=${this.password}`, {
+                const response = await fetch(`${current_address}/request_pass_reset`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,9 +56,9 @@ export default {
     },
     data(){
         return {
-            message: 'LOGIN',
+            message: 'FORGOT PASSWORD',
             username: '',
-            password: ''
+            email: ''
         }
     }
 }

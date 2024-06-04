@@ -27,12 +27,13 @@
 </template>
 
 <script>
+import current_address from '@/address';
+
 export default {
     name: 'ChangeLogs',
     methods: {
         async retrieve_data(){
-            const response = await fetch(`https://aquaeasy.onrender.com/all_deleted_entries?user_id=${this.user_data.id}`);
-            // const response = await fetch(`http://127.0.0.1:8000/all_deleted_entries?user_id=${this.user_data.id}`);
+            const response = await fetch(`${current_address}/all_deleted_entries?user_id=${this.user_data.id}`);
             const data = await response.json();
 
             if (!response.ok){
@@ -56,7 +57,7 @@ export default {
         
         setInterval(() => {
             this.retrieve_data();
-        }, 70000)
+        }, 60000)
     }
 }
 </script>

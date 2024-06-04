@@ -66,7 +66,17 @@ class LogAdminModel(ModelView, model=Log):
 
 
 class DeletedLogAdminModel(ModelView, model=DeletedLog):
-    column_list = [DeletedLog.id, DeletedLog.turbidity, DeletedLog.ph, DeletedLog.tds, DeletedLog.ec, DeletedLog.battery, DeletedLog.date_created, DeletedLog.record_owner]
+    column_list = [
+        DeletedLog.id, 
+        DeletedLog.turbidity, 
+        DeletedLog.ph, 
+        DeletedLog.tds, 
+        DeletedLog.ec, 
+        DeletedLog.battery, 
+        DeletedLog.date_created_log, 
+        DeletedLog.date_deleted,
+        DeletedLog.record_owner
+    ]
 
 
 admin.add_view(UserAdminModel)
@@ -232,7 +242,7 @@ async def retrieve_deleted_entries(user_id: int, db: Session = Depends(get_datab
 
 @app.get('/delete_entry')
 async def delete_entry(entry_id: int, db: Session = Depends(get_database)):
-    try:
+    # try:
         entry = db.query(Log).filter(Log.id == entry_id).first()
 
         if entry:
@@ -242,16 +252,18 @@ async def delete_entry(entry_id: int, db: Session = Depends(get_database)):
             deleted_entry.tds = entry.tds
             deleted_entry.ec = entry.ec
             deleted_entry.battery = entry.battery
-            deleted_entry.date_created = entry.date_created
+            deleted_entry.date_created_log = entry.date_created
             deleted_entry.record_owner = entry.record_owner
 
             db.add(deleted_entry)
             db.delete(entry)
             db.commit()
 
+        print('testing')
         return { 'response': 'Data Deleted', 'status_code': 200 }
-    except:
-        return { 'response': 'Error deleting data.', 'status_code': 400 }
+    # except:
+    #     print('hi')
+    #     return { 'response': 'Error deleting data.', 'status_code': 400 }
     
 
 # @app.get('/delete_user')
