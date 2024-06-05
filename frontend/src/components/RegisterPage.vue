@@ -1,7 +1,7 @@
 <template>
     <div id="container">
         <div id="login-panel">
-            <h1>Sign In</h1>
+            <h1>Register</h1>
             <h4>Water Quality Monitoring</h4>
 
             <div id="login-form">
@@ -29,6 +29,7 @@
 
             <div id="interactivity-section">
                 <button @click="register()">Sign In</button>
+                <p>Already a user? Sign in <span @click="() => { this.$router.push('/') }">here.</span></p>
             </div>
         </div>
     </div>
@@ -120,7 +121,7 @@ export default {
 }
 
 #login-form {
-    height: 60%;
+    height: 55%;
     width: 95%;
     padding-right: 5%;
     overflow-y: scroll;

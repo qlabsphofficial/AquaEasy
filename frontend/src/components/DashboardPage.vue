@@ -74,13 +74,9 @@ export default {
             const response = await fetch(`${current_address}/retrieve_dashboard_data?user_id=${this.user_id}`);
             const data = await response.json();
 
-            if (!response.ok){
-                console.log('Failed.');
-            }
-            else{
+            if (response.ok){
                 this.user_data = data.payload.user_data;
-                console.log(this.user_data);
-            }            
+            }          
         }
     },
     props: ['user_id'],
