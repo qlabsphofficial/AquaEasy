@@ -16,7 +16,7 @@
                 <button @click="requestPassReset()">Request Password Change</button>
                 <br>
                 <br>
-                <h5 @click="() => { this.$router.push('/') } ">Return to Previous Page</h5>
+                <h5 @click="() => { this.$router.push('/login') } ">Return to Previous Page</h5>
             </div>
         </div>
     </div>
@@ -89,6 +89,10 @@ export default {
     border-radius: 15px;
     box-shadow: 2px 2px 2px #919191;
     text-align: left;
+    transform: translateY(-5%);
+    opacity: 0;
+    animation: hoverIn .6s ease-in-out;
+    animation-fill-mode: forwards;
 
     h1 {
         margin-top: 15%;
@@ -136,6 +140,10 @@ export default {
         border: 1px solid black;
         color: black;
     }
+
+    h5 {
+        cursor: pointer;
+    }
 }
 
 #forgot-section {
@@ -143,5 +151,16 @@ export default {
     margin-top: -10%;
     margin-bottom: 15%;
     text-align: right;
+}
+
+@keyframes hoverIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>

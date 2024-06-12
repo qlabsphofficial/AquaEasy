@@ -92,6 +92,10 @@ export default {
     border-radius: 15px;
     box-shadow: 2px 2px 2px #919191;
     text-align: left;
+    transform: translateY(-5%);
+    animation: hoverIn .6s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0;
 
     h1 {
         margin-top: 15%;
@@ -153,6 +157,17 @@ export default {
 
     h5 {
         cursor: pointer;
+    }
+}
+
+@keyframes hoverIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 </style>

@@ -68,6 +68,10 @@ export default {
     width: 90%;
     display: flex;
     flex-direction: column;
+    transform: translateY(-5%);
+    opacity: 0;
+    animation: hoverIn .6s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 #logs-container {
@@ -95,6 +99,17 @@ export default {
         border: none;
         position: sticky;
         top: 0;
+    }
+}
+
+@keyframes hoverIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 </style>

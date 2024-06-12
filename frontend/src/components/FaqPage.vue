@@ -65,6 +65,10 @@ export default {
     text-align: left;
     height: 80%;
     width: 80%;
+    transform: translateY(-5%);
+    opacity: 0;
+    animation: hoverIn .6s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 #all-questions {
@@ -104,5 +108,16 @@ export default {
 
 .question::-webkit-scrollbar-track {
   background: #f1f1f1;
+}
+
+@keyframes hoverIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
