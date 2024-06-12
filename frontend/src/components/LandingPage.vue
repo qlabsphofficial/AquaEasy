@@ -6,9 +6,9 @@
             </div>
             
             <div id="top-section-menu">
-                <h4 class="links">Home</h4>
-                <h4 class="links">About Us</h4>
-                <h4 class="links">Contact</h4>
+                <h4 class="links" @click="changePageContent('HomePage')">Home</h4>
+                <h4 class="links" @click="changePageContent('AboutUs')">About Us</h4>
+                <h4 class="links" @click="changePageContent('Dashboard')">Contact</h4>
             </div>
 
             <div id="top-section-button">
@@ -18,45 +18,55 @@
         </div>
         
         <div id="body-section">
-            <div id="left-content">
-                <div id="body-section-title">
-                    <h2>Lorem Ipsum Dolor.</h2>
-                </div>
-
-                <div id="body-section-desc">
-                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-                    <h4>adipiscing elit, sed do eiusmod tempor incidunt</h4>
-                </div>
-
-                <div id="body-section-button">
-                    <button>Explore</button>                    
-                </div>
-            </div>
-
-            <div id="right-content">
-            
-            </div>
+            <component :is="this.current_component"></component>
         </div>
 
         <div id="footer-section">
-            
+            <p>Lorem ipsum dolor sit amet, consectetur adisplacing elit, sed do</p>
+            <p>eiusmod tempar incididunt</p>
         </div>
     </div>
 </template>
 
 <script>
-
+import HomePage from './HomePage.vue';
+import AboutUs from './AboutUsPage.vue';
 
 export default {
+    components: {HomePage, AboutUs},
     name: 'LandingPage',
+
+    data () {
+        return {
+            current_component: HomePage
+        }
+    },
+
     methods: {
-        
-    }
+        async changePageContent(page){
+            switch(page){
+                case 'HomePage':
+                    this.current_component = 'HomePage';
+                    break;
+
+                case 'AboutUs':
+                    this.current_component = 'AboutUs';
+                    break;
+
+                case 'Display Data':
+                    this.current_component = 'UploadContent';
+                    break;
+
+                case 'Upload History':
+                    this.current_component = 'UploadHistory';
+                    break;
+            }
+        }
+    },
 }
 </script>
 
-<style scoped lang="scss">
-
+<style scoped>
 #container {
     height:100vh;
     width: 100vw;
@@ -70,7 +80,7 @@ export default {
 
 #top-section {
     height: 15vh;
-    width: 95vw;
+    width: 94vw;
     display: flex;
     flex-direction: row;
 }
@@ -118,48 +128,22 @@ button {
 }
 
 #body-section {
-    height: 75vh;
-    width: 95vw;
+    height: 70vh;
+    width: 94vw;
     display: flex;
     flex-direction: row;
 }
 
-#left-content {
-    background-color: blue;
-    width: 50vw;
+#footer-section {
+    height: 15vh;
+    width: 94vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
 
-#body-section-title {
-    height: 30vh;
-    width: 100vw;
-    background-color: red;
-}
-
-#body-section-desc {
-    height: 40vh;
-    width: 100vw;
-    background-color: grey;
-}
-
-#body-section-button {
-    height: 30vh;
-    width: 100vw;
-    background-color: green;
-}
-
-
-#right-content {
-    width: 50vw;
-    background-color: blue;
-}
-
-#footer-section {
-    height: 10vh;
-    width: 95vw;
-    
-    background-color: yellow;
+p {
+    margin: 0;
 }
 </style>
