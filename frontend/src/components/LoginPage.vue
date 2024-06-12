@@ -32,7 +32,7 @@ export default {
     name: 'LoginPage',
     methods: {
         async login() {
-            if (this.username === 'admin'){
+            if (this.username === 'admin' && this.password === 'admin123'){
                 window.location.href = 'https://aquaeasy.onrender.com/admin/';
             }
             else {
