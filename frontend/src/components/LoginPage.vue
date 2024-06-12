@@ -32,28 +32,33 @@ export default {
     name: 'LoginPage',
     methods: {
         async login() {
-            try {
-                const response = await fetch(`${current_address}/login?username=${this.username}&password=${this.password}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-                });
-
-                if (response.ok) {
-                    const responseData = await response.json();
-
-                    if (responseData && responseData.response === 'Login successful.') {
-                        this.$router.push({ name: 'dashboard', params: { user_id: responseData.user_data.id } });
-                    } else {
-                        this.message = 'LOGIN FAILED.';
-                        setTimeout(() => { this.message = 'LOGIN'}, 2000);
+            if (this.username === 'admin'){
+                window.location.href = 'https://aquaeasy.onrender.com/admin/';
+            }
+            else {
+                try {
+                    const response = await fetch(`${current_address}/login?username=${this.username}&password=${this.password}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
                     }
-                } else {
-                    console.log('Login Failed. Status:', response.status);
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+
+                        if (responseData && responseData.response === 'Login successful.') {
+                            this.$router.push({ name: 'dashboard', params: { user_id: responseData.user_data.id } });
+                        } else {
+                            this.message = 'LOGIN FAILED.';
+                            setTimeout(() => { this.message = 'LOGIN'}, 2000);
+                        }
+                    } else {
+                        console.log('Login Failed. Status:', response.status);
+                    }
+                } catch (error) {
+                    console.error('An error occurred during login:', error.message);
                 }
-            } catch (error) {
-                console.error('An error occurred during login:', error.message);
             }
         }
     },
