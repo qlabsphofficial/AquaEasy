@@ -13,7 +13,7 @@
                 <th></th>
 
                 <tr v-for="log in logs" :key="log">
-                    <td>{{ log.date_created }}</td>
+                    <td>{{ log.date_created_log }}</td>
                     <td>{{ log.turbidity }}NTU</td>
                     <td>{{ log.ph }}pH</td>
                     <td>{{ log.tds }}ppm</td>
