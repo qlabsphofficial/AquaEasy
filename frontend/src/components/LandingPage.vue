@@ -22,8 +22,8 @@
         </div>
 
         <div id="footer-section">
-            <p>Lorem ipsum dolor sit amet, consectetur adisplacing elit, sed do</p>
-            <p>eiusmod tempar incididunt</p>
+            <p>AquaEasy: Water Quality Monitoring</p>
+            <p>© 2024 AquaEasy, Inc. All rights reserved.</p>
         </div>
     </div>
 </template>

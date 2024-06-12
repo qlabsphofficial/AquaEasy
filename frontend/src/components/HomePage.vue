@@ -16,12 +16,12 @@ export default {
     <div id="dashboard-container">
         <div id="left-content">
             <div id="page-header">
-                <h1>Lorem Ipsum Dolor.</h1>
+                <h1>Water Quality Monitoring</h1>
             </div>
 
             <div id="page-description">
-                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-                <h4>adipiscing elit, sed do eiusmod tempor incididunt</h4>
+                <h4>AquaEasy revolutionizes the way you monitor and control your water usage,</h4>
+                <h4>providing a seamless experience for homeowners, businesses, and agricultural operations.</h4>
                 <button>Explore</button>
             </div>
         </div>
