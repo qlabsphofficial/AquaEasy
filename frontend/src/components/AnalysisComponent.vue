@@ -5,22 +5,22 @@
         <div id="all-charts">
           <div class="chart-container">
               <h2>Temperature</h2>
-              <canvas ref="barChart1" width="1000" height="300"></canvas>
+              <canvas ref="barChart1" width="600" height="260"></canvas>
           </div>
 
           <div class="chart-container">
               <h2>Turbidity</h2>
-              <canvas ref="barChart2" width="1000" height="300"></canvas>
+              <canvas ref="barChart2" width="600" height="260"></canvas>
           </div>
           
           <div class="chart-container">
               <h2>pH</h2>
-              <canvas ref="barChart3" width="1000" height="300"></canvas>
+              <canvas ref="barChart3" width="600" height="260"></canvas>
           </div>
 
           <div class="chart-container">
               <h2>TDS</h2>
-              <canvas ref="barChart4" width="1000" height="300"></canvas>
+              <canvas ref="barChart4" width="600" height="260"></canvas>
           </div>
         </div>
     </div>
@@ -168,8 +168,7 @@ export default {
 <style>
 #charts-container {
     height: 90%;
-    width: 90%;
-    overflow-y: scroll;
+    width: 100%;
 }
 
 #charts-container::-webkit-scrollbar {
@@ -190,10 +189,13 @@ export default {
     height: 90%;
     width: 100%;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
 .chart-container {
-  margin: 20px;
+  margin: 1%;
 }
 </style>

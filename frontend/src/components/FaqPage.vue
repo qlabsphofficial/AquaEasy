@@ -79,12 +79,17 @@ export default {
 .question {
     height: 43%;
     width: 25%;
-    overflow-y: scroll;
     padding: 2%;
     margin: 2%;
     border: none;
     border-radius: 15px;
     box-shadow: 2px 2px 2px 2px #B4B4B4;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.question:hover {
+    margin-top: -3%;
 }
 
 .question::-webkit-scrollbar {

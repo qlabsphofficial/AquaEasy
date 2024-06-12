@@ -24,19 +24,14 @@ export default {
             </div>
 
             <div id="right-content-container">
-                <div id="page-description-top">
-                    <p>AquaEasy was founded by a team of innovative 4th-year college students with a passion for technology and environmental sustainability. As developers and environmental enthusiasts, we recognized the urgent need for smarter water management solutions in a world facing increasing water scarcity.</p>
-                </div>
+                <p>AquaEasy was founded by a team of innovative 4th-year college students with a passion for technology and environmental sustainability. As developers and environmental enthusiasts, we recognized the urgent need for smarter water management solutions in a world facing increasing water scarcity.</p>
+                <p>Our mission is to provide users with an intuitive, efficient, and powerful tool to monitor and optimize water usage, helping to conserve this precious resource for future generations. Join us on our journey to make water management easy and sustainable for everyone.</p>
+            </div>
 
-                <div id="page-description-bottom">
-                    <p>Our mission is to provide users with an intuitive, efficient, and powerful tool to monitor and optimize water usage, helping to conserve this precious resource for future generations. Join us on our journey to make water management easy and sustainable for everyone.</p>
-                </div>
-
-                <div id="page-description-icon">
-                    <img src="@/assets/facebook.png">
-                    <img src="@/assets/twitter.png">
-                    <img src="@/assets/instagram.png">
-                </div>
+            <div id="page-description-icon">
+                <img src="@/assets/facebook.png">
+                <img src="@/assets/twitter.png">
+                <img src="@/assets/instagram.png">
             </div>
         </div>
 
@@ -51,12 +46,18 @@ export default {
     position: relative;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 #left-content {
     width: 40vw;
     display: flex;
     flex-direction: column;
+    transform: translateY(-5%);
+    animation: hoverIn .6s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: .4s;
+    opacity: 0;
 }
 
 #left-content img {
@@ -67,10 +68,16 @@ export default {
 }
 
 #right-content {
-    width: 60vw;
+    width: 50vw;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    transform: translateY(-5%);
+    animation: hoverIn .6s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: .4s;
+    opacity: 0;
 }
 
 #page-header {
@@ -91,6 +98,8 @@ export default {
     height: 85%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
 }
 
 #page-description-top, #page-description-bottom {
@@ -115,5 +124,16 @@ p {
 
 #page-description-icon img {
     margin-right: 8px
+}
+
+@keyframes hoverIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>

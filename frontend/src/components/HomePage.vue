@@ -46,6 +46,11 @@ export default {
     width: 50vw;
     display: flex;
     flex-direction: column;
+    transform: translateY(-5%);
+    animation: hoverIn .6s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: .4s;
+    opacity: 0;
 }
 
 #page-header {
@@ -73,12 +78,26 @@ button {
     width: 20%;
     border-radius: 3px;
     border: 1px solid transparent;
+    transition: .4s;
+    background-color: #1497DD;
+    color: white;
+}
+
+button:hover {
+    border: 1px solid #1497DD;
+    background-color: transparent;
+    color: #1497DD;
 }
 
 #right-content {
     width: 50vw;
     display: flex;
     align-items: center;
+    transform: translateY(-5%);
+    animation: hoverIn .6s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: .4s;
+    opacity: 0;
 }   
 
 #right-content img {
@@ -86,5 +105,16 @@ button {
     width: 100%;
     border-radius: 48px;
     border: 1px solid transparent;
+}
+
+@keyframes hoverIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>

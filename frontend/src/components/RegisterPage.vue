@@ -29,7 +29,7 @@
 
             <div id="interactivity-section">
                 <button @click="register()">Sign In</button>
-                <p>Already a user? Sign in <span @click="() => { this.$router.push('/') }">here.</span></p>
+                <p>Already a user? Sign in <span @click="() => { this.$router.push('/login') }">here.</span></p>
             </div>
         </div>
     </div>
@@ -175,6 +175,10 @@ export default {
         background-color: transparent;
         border: 1px solid black;
         color: black;
+    }
+
+    p {
+        cursor: pointer;
     }
 }
 </style>

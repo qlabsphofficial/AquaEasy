@@ -16,7 +16,7 @@
                     <td>{{ log.date_created }}</td>
                     <td>{{ log.turbidity }}NTU</td>
                     <td>{{ log.ph }}pH</td>
-                    <td>{{ log.tds }}pn</td>
+                    <td>{{ log.tds }}ppm</td>
                     <td>{{ log.ec }}°C</td>
                     <td>{{ log.battery }}%</td>
                     <td><button @click="delete_data(log.id)">Delete</button></td>
@@ -72,7 +72,7 @@ export default {
         
         setInterval(() => {
             this.retrieve_data();
-        }, 60000)
+        }, 10000)
     }
 }
 </script>

@@ -12,8 +12,8 @@
             </div>
 
             <div id="top-section-button">
-                <button id="login-btn">Log in</button>
-                <button id="signup-btn">Sign up</button>
+                <button id="login-btn" @click="this.$router.push('/login')">Log in</button>
+                <button id="signup-btn" @click="this.$router.push('/register')">Sign up</button>
             </div>
         </div>
         
@@ -52,14 +52,6 @@ export default {
                 case 'AboutUs':
                     this.current_component = 'AboutUs';
                     break;
-
-                case 'Display Data':
-                    this.current_component = 'UploadContent';
-                    break;
-
-                case 'Upload History':
-                    this.current_component = 'UploadHistory';
-                    break;
             }
         }
     },
@@ -83,6 +75,9 @@ export default {
     width: 94vw;
     display: flex;
     flex-direction: row;
+    transform: translateX(-5%);
+    animation: hoverInHorizontal .6s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 #top-section-title {
@@ -99,6 +94,10 @@ export default {
     justify-content: center;
 }
 
+.links {
+    cursor: pointer;
+}
+
 .links, button {
     margin-left: 8%;
 }
@@ -112,19 +111,32 @@ export default {
 }
 
 button {
-    height: 40%;
+    height: 30%;
     width: 28%;
     border-radius: 3px;
     border: 1px solid transparent;
+    transition: .4s;
+    cursor: pointer;
 }
 
 #login-btn {
     background-color: white;
 }
 
-#signup-btn {
-    background-color: blue;
+#login-btn:hover {
+    background-color: #1497DD;
     color: white;
+}
+
+#signup-btn {
+    background-color: #1497DD;
+    color: white;
+}
+
+#signup-btn:hover {
+    border: 1px solid #1497DD;
+    background-color: transparent;
+    color: #1497DD;
 }
 
 #body-section {
@@ -145,5 +157,16 @@ button {
 
 p {
     margin: 0;
+}
+
+@keyframes hoverInHorizontal {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 </style>

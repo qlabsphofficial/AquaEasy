@@ -13,10 +13,10 @@
                 <th>Date Deleted</th>
 
                 <tr v-for="log in logs" :key="log">
-                    <td>{{ log.date_created }}</td>
+                    <td>{{ log.date_created_log }}</td>
                     <td>{{ log.turbidity }}NTU</td>
                     <td>{{ log.ph }}pH</td>
-                    <td>{{ log.tds }}pn</td>
+                    <td>{{ log.tds }}ppm</td>
                     <td>{{ log.ec }}°C</td>
                     <td>{{ log.battery }}%</td>
                     <td>{{ log.date_deleted }}</td>
@@ -57,7 +57,7 @@ export default {
         
         setInterval(() => {
             this.retrieve_data();
-        }, 60000)
+        }, 10000)
     }
 }
 </script>

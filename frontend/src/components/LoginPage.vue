@@ -139,6 +139,10 @@ export default {
         border: 1px solid black;
         color: black;
     }
+
+    a {
+        cursor: pointer;
+    }
 }
 
 #forgot-section {
@@ -146,5 +150,9 @@ export default {
     margin-top: -10%;
     margin-bottom: 15%;
     text-align: right;
+
+    h5 {
+        cursor: pointer;
+    }
 }
 </style>
