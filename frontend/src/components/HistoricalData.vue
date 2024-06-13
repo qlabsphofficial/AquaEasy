@@ -13,7 +13,7 @@
                 <th></th>
 
                 <tr v-for="log in logs" :key="log">
-                    <td>{{ log.date_created_log }}</td>
+                    <td>{{ log.date_created }}</td>
                     <td>{{ log.turbidity }}NTU</td>
                     <td>{{ log.ph }}pH</td>
                     <td>{{ log.tds }}ppm</td>
@@ -63,16 +63,22 @@ export default {
 
     data() {
         return {
-            logs: []
+            logs: [],
+            intervalId: null
         }
     },
 
     mounted(){
         this.retrieve_data();
         
-        setInterval(() => {
+        this.intervalId = setInterval(() => {
             this.retrieve_data();
         }, 10000)
+    },
+    beforeUnmount(){
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+        }
     }
 }
 </script>

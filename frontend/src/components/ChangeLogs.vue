@@ -41,6 +41,7 @@ export default {
             }
             else{
                 this.logs = data.payload;
+                console.log(data.payload);
             }            
         }
     },
@@ -49,15 +50,21 @@ export default {
     },  
     data() {
         return {
-            logs: []
+            logs: [],
+            intervalId: null
         }
     },
     mounted(){
         this.retrieve_data();
         
-        setInterval(() => {
+        this.intervalId = setInterval(() => {
             this.retrieve_data();
-        }, 10000)
+        }, 10000);
+    },
+    beforeUnmount(){
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+        }
     }
 }
 </script>

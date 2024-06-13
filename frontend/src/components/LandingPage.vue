@@ -8,7 +8,7 @@
             <div id="top-section-menu">
                 <h4 class="links" @click="changePageContent('HomePage')">Home</h4>
                 <h4 class="links" @click="changePageContent('AboutUs')">About Us</h4>
-                <h4 class="links" @click="changePageContent('Dashboard')">Contact</h4>
+                <h4 class="links" @click="changePageContent('Contact')">Contact</h4>
             </div>
 
             <div id="top-section-button">
@@ -31,9 +31,10 @@
 <script>
 import HomePage from './HomePage.vue';
 import AboutUs from './AboutUsPage.vue';
+import ContactPage from './ContactPage.vue';
 
 export default {
-    components: {HomePage, AboutUs},
+    components: {HomePage, AboutUs, ContactPage},
     name: 'LandingPage',
 
     data () {
@@ -51,6 +52,10 @@ export default {
 
                 case 'AboutUs':
                     this.current_component = 'AboutUs';
+                    break;
+
+                case 'Contact':
+                    this.current_component = 'ContactPage';
                     break;
             }
         }
