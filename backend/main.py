@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, desc
 from database import SessionLocal, engine, Base
 from pydantic import BaseModel
 from models import User, Log, DeletedLog
@@ -54,6 +54,7 @@ class LogModel(BaseModel):
     tds: float
     ec: float
     battery: float
+    remarks: str
     user_id: int
 
 
@@ -168,6 +169,7 @@ async def insert_log(log: LogModel, db: Session = Depends(get_database)):
         new_entry.tds = log.tds
         new_entry.ec = log.ec
         new_entry.battery = log.battery
+        new_entry.remarks = log.remarks
         new_entry.date_created = dt.datetime.now()
         new_entry.record_owner = log.user_id
 
@@ -223,7 +225,7 @@ async def retrieve_dashboard_data(user_id: int, db: Session = Depends(get_databa
 @app.get('/all_entries')
 async def retrieve_entries(user_id: int, db: Session = Depends(get_database)):
     try:
-        entries = db.query(Log).filter(Log.record_owner == user_id).all()
+        entries = db.query(Log).filter(Log.record_owner == user_id).order_by(desc(Log.date_created)).all()
 
         return { 'payload': entries, 'status_code': 200 }
     except:
@@ -233,9 +235,9 @@ async def retrieve_entries(user_id: int, db: Session = Depends(get_database)):
 @app.get('/all_deleted_entries')
 async def retrieve_deleted_entries(user_id: int, db: Session = Depends(get_database)):
     try:
-        entries = db.query(DeletedLog).filter(DeletedLog.record_owner == user_id).all()
+        entries = db.query(DeletedLog).filter(DeletedLog.record_owner == user_id).order_by(desc(DeletedLog.date_deleted)).all()
 
-        return { 'payload': entries, 'status_code': 200 }
+        return { 'payload': entries, 'status_code': 200 }   
     except:
         return { 'response': 'Error retrieving data.', 'status_code': 400 }
 
@@ -252,6 +254,7 @@ async def delete_entry(entry_id: int, db: Session = Depends(get_database)):
             deleted_entry.tds = entry.tds
             deleted_entry.ec = entry.ec
             deleted_entry.battery = entry.battery
+            deleted_entry.remarks = entry.remarks
             deleted_entry.date_created_log = entry.date_created
             deleted_entry.record_owner = entry.record_owner
 

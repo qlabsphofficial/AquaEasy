@@ -10,6 +10,7 @@
                 <th>TDS</th>
                 <th>Temperature</th>
                 <th>Power Life</th>
+                <th>Remarks</th>
                 <th></th>
 
                 <tr v-for="log in logs" :key="log">
@@ -19,6 +20,7 @@
                     <td>{{ log.tds }}ppm</td>
                     <td>{{ log.ec }}°C</td>
                     <td>{{ log.battery }}%</td>
+                    <td>{{ log.remarks }}</td>
                     <td><button @click="delete_data(log.id)">Delete</button></td>
                 </tr>
             </table>

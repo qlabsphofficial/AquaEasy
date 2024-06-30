@@ -27,6 +27,7 @@ class Log(Base):
     tds = Column(Float)
     ec = Column(Float)
     battery = Column(Float)
+    remarks = Column(String)
     date_created = Column(DateTime, server_default=func.now())
     record_owner = Column(Integer, ForeignKey('users.id'))
 
@@ -42,7 +43,8 @@ class DeletedLog(Base):
     tds = Column(Float)
     ec = Column(Float)
     battery = Column(Float)
-    date_created_log = Column(DateTime)
+    remarks = Column(String)
+    date_created_log = Column(DateTime, server_default=func.now())
     date_deleted = Column(DateTime, server_default=func.now())
     record_owner = Column(Integer, ForeignKey('users.id'))
 

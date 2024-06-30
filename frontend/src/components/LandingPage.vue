@@ -12,8 +12,8 @@
             </div>
 
             <div id="top-section-button">
-                <button id="login-btn" @click="this.$router.push('/login')">Log in</button>
-                <button id="signup-btn" @click="this.$router.push('/register')">Sign up</button>
+                <button id="login-btn" @click="this.$router.push('/login')">Sign In</button>
+                <button id="signup-btn" @click="this.$router.push('/register')">Sign Up</button>
             </div>
         </div>
         
