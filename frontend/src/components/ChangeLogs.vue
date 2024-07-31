@@ -10,18 +10,22 @@
                 <th>TDS</th>
                 <th>Temperature</th>
                 <th>Power Life</th>
-                <th>Date Deleted</th>
-                <th>Remarks</th>
+                <th>Turbidity Remark</th>
+                <th>Humidity Remark</th>
+                <th>TDS Remark</th>
+                <th>EC Remark</th>
 
                 <tr v-for="log in logs" :key="log">
-                    <td>{{ log.date_created_log }}</td>
+                    <td>{{ log.date_created }}</td>
                     <td>{{ log.turbidity }}NTU</td>
                     <td>{{ log.ph }}pH</td>
                     <td>{{ log.tds }}ppm</td>
                     <td>{{ log.ec }}°C</td>
                     <td>{{ log.battery }}%</td>
-                    <td>{{ log.date_deleted }}</td>
-                    <td>{{ log.remarks }}</td>
+                    <td>{{ log.turbidity_remark }}</td>
+                    <td>{{ log.ph_remark }}</td>
+                    <td>{{ log.tds_remark }}</td>
+                    <td>{{ log.ec_remark }}</td>
                 </tr>
             </table>
         </div>

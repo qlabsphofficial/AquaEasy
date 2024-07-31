@@ -54,7 +54,10 @@ class LogModel(BaseModel):
     tds: float
     ec: float
     battery: float
-    remarks: str
+    turbidity_remark: str
+    ph_remark: str
+    tds_remark: str
+    ec_remark: str
     user_id: int
 
 
@@ -169,7 +172,10 @@ async def insert_log(log: LogModel, db: Session = Depends(get_database)):
         new_entry.tds = log.tds
         new_entry.ec = log.ec
         new_entry.battery = log.battery
-        new_entry.remarks = log.remarks
+        new_entry.turbidity_remark = log.turbidity_remark
+        new_entry.ph_remark = log.ph_remark
+        new_entry.tds_remark = log.tds_remark
+        new_entry.ec_remark = log.ec_remark
         new_entry.date_created = dt.datetime.now()
         new_entry.record_owner = log.user_id
 
@@ -254,7 +260,10 @@ async def delete_entry(entry_id: int, db: Session = Depends(get_database)):
             deleted_entry.tds = entry.tds
             deleted_entry.ec = entry.ec
             deleted_entry.battery = entry.battery
-            deleted_entry.remarks = entry.remarks
+            deleted_entry.turbidity_remark = entry.turbidity_remark
+            deleted_entry.ph_remark = entry.ph_remark
+            deleted_entry.tds_remark = entry.tds_remark
+            deleted_entry.ec_remark = entry.ec_remark
             deleted_entry.date_created_log = entry.date_created
             deleted_entry.record_owner = entry.record_owner
 
@@ -262,7 +271,6 @@ async def delete_entry(entry_id: int, db: Session = Depends(get_database)):
             db.delete(entry)
             db.commit()
 
-        print('testing')
         return { 'response': 'Data Deleted', 'status_code': 200 }
     # except:
     #     print('hi')
